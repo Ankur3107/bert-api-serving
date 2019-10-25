@@ -15,11 +15,11 @@ import argparse
 app = Flask(__name__)
 api = Api(app)
 
-export_dir = <Serving Model Path> #'tf-severing_v3/1/1565064269/'
+export_dir = None #<Serving Model Path> #'tf-severing_v3/1/1565064269/'
 max_seq_length = 384
 MAX_QUERY_LENGTH = 64
 DOC_STRIDE = 128
-VOCAB_FILE = <Model_Vocab_File_Path>#'../Model/vocab.txt'
+VOCAB_FILE = None #<Model_Vocab_File_Path>#'../Model/vocab.txt'
 DO_LOWER_CASE = True
 N_BEST_SIZE = 20
 MAX_ANSWER_LENGTH = 30
