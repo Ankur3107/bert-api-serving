@@ -14,11 +14,11 @@ import collections
 app = Flask(__name__)
 api = Api(app)
 
-export_dir = <Serving Model Path> #'tf-severing_v3/1/1565064269/'
+export_dir = None #<Serving Model Path> #'tf-severing_v3/1/1565064269/'
 max_seq_length = 384
 MAX_QUERY_LENGTH = 64
 DOC_STRIDE = 128
-VOCAB_FILE = <Model_Vocab_File_Path>#'../Model/vocab.txt'
+VOCAB_FILE = None #<Model_Vocab_File_Path>#'../Model/vocab.txt'
 DO_LOWER_CASE = True
 N_BEST_SIZE = 20
 MAX_ANSWER_LENGTH = 30
@@ -348,4 +348,18 @@ class QA_Model(Resource):
 api.add_resource(QA_Model, '/<string:question>')
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_dir", help="tf serving exported model dir")
+    parser.add_argument("--vocab_path", help="bert vocab path")
+
+    model_dir = args.model_dir
+    vocab_path = args.vocab_path
+
+    if model_dir==None or vocab_path==None:
+        print('Input format error')
+    else:
+        global export_dir, VOCAB_FILE
+        export_dir = model_dir
+        VOCAB_FILE = vocab_path
+
     app.run(port=3131,host='0.0.0.0')
