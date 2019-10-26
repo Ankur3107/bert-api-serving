@@ -6,4 +6,4 @@
 ## TODO List:
 1. Rest API using flask
 2. Make tf serving
-
+3. Sagemaker API
